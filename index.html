@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סחלבים בשביל נועם</title>
+    <!-- Import Amatic SC font -->
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic styles for a mobile-friendly design */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Amatic SC', cursive;
+            background: linear-gradient(180deg, #F8F4FF, #D8BFFF);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .background {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .orchid {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://cdn-icons-png.flaticon.com/512/4982/4982039.png') no-repeat center/contain;
+            animation: fall linear infinite;
+        }
+
+        /* Keyframes for rain effect */
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Romantic text styles */
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 4.5em;
+            color: #8A2BE2;
+            text-shadow: 3px 3px 10px rgba(138, 43, 226, 0.6);
+        }
+
+        /* Button styles */
+        .button {
+            position: absolute;
+            top: 65%; /* Position it below the text */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #8A2BE2;
+            color: white;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #6A0DAD;
+        }
+
+        /* Hidden by default, replacement text is displayed after button click */
+        .new-message {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 4.5em;
+            color: #8A2BE2;
+            text-shadow: 3px 3px 10px rgba(138, 43, 226, 0.6);
+        }
+    </style>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script>
+        function createOrchids() {
+            const background = document.querySelector('.background');
+            const count = 50; // Number of orchids raining
+
+            for (let i = 0; i < count; i++) {
+                const orchid = document.createElement('div');
+                orchid.classList.add('orchid');
+
+                // Set random starting position
+                orchid.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+                orchid.style.animationDuration = Math.random() * 3 + 5 + 's'; // Random speed
+                orchid.style.animationDelay = Math.random() * 2 + 's'; // Staggered timing
+
+                background.appendChild(orchid);
+
+                // Remove orchids after animation ends
+                orchid.addEventListener('animationend', () => {
+                    orchid.remove();
+                    createSingleOrchid(); // Add a new orchid
+                });
+            }
+        }
+
+        // Create a single orchid to maintain the rain effect
+        function createSingleOrchid() {
+            const background = document.querySelector('.background');
+            const orchid = document.createElement('div');
+            orchid.classList.add('orchid');
+
+            orchid.style.left = Math.random() * 100 + 'vw';
+            orchid.style.animationDuration = Math.random() * 3 + 5 + 's';
+            orchid.style.animationDelay = Math.random() * 2 + 's';
+
+            background.appendChild(orchid);
+
+            orchid.addEventListener('animationend', () => orchid.remove());
+        }
+
+        // Function to start the song when the button is clicked
+        function startSong() {
+            const iframe = document.querySelector('iframe');
+            const player = SC.Widget(iframe);  // Use SoundCloud's Widget API
+
+            player.play();  // Start the song explicitly when the button is clicked
+
+            // Hide the original text and button, show the new message
+            document.querySelector('.text').style.display = 'none';
+            document.querySelector('.button').style.display = 'none';
+            document.querySelector('.new-message').style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', createOrchids);
+    </script>
+</head>
+<body>
+    <!-- Background for orchids -->
+    <div class="background"></div>
+    <!-- Text in the center -->
+    <div class="text">
+       חיים שלי נועם
+    </div>
+    <!-- Button to start the song -->
+    <button class="button" onclick="startSong()">תלחצי על הכפתור המתוק הזה</button>
+    <!-- New message after the button is clicked -->
+    <div class="new-message">
+        שולח לקווקזית שלי מלא סחלבים וירטואליים
+    </div>
+    <!-- SoundCloud music player with autoplay enabled, but initially muted -->
+    <iframe width="1" height="1" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/378464117&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/devinhayes" title="Devin Hayes" target="_blank" style="color: #cccccc; text-decoration: none;">Devin Hayes</a> · <a href="https://soundcloud.com/devinhayes/falling-slowly" title="Glen Hansard, Marketa Irglova - Falling Slowly" target="_blank" style="color: #cccccc; text-decoration: none;">Glen Hansard, Marketa Irglova - Falling Slowly</a></div>
+</body>
+</html>
